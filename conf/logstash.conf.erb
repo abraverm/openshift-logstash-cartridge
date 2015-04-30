@@ -1,12 +1,7 @@
 # See http://logstash.net/docs/latest/ for documentation on how to configure Logstash.
 
 input {
-
-    file {
-        path => "<%= ENV['OPENSHIFT_PRIMARY_CARTRIDGE_DIR'] %>/logs/*"
-        tags => ["<%= ENV['OPENSHIFT_APP_NAME'] %>", "<%= ENV['OPENSHIFT_GEAR_NAME'] %>", "<%= ENV['OPENSHIFT_NAMESPACE'] %>"]
-    }
-
+    bugzilla { }
 }
 
 output {

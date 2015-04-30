@@ -13,4 +13,4 @@ Provides:
 Scaling:
   Min: 1
   Max: -1
-
+Source-Url: https://github.com/abraverm/openshift-logstash-cartridge.git

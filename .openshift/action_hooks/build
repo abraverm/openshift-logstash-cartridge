@@ -1,3 +1,18 @@
 #!/bin/bash
+source "$OPENSHIFT_CARTRIDGE_SDK_BASH"
 
 curl -s https://download.elasticsearch.org/logstash/logstash/logstash-1.4.1.tar.gz | tar xz
+mv logstash-1.4.1 logstash
+export GEM_HOME="$(pwd)/logstash/vendor/bundle/jruby/1.9"
+export GEM_PATH=
+client_result "------------------------"
+client_result "Installing Ruby Bugzilla"
+client_result "------------------------"
+jruby -S gem install specific_install
+jruby -S gem specific_install -l https://alexbmasis@bitbucket.org/alexbmasis/ruby-bugzilla.git
+client_result "--------------------------"
+client_result "Installing Bugzilla Plugin"
+client_result "--------------------------"
+
+jruby -S gem install plugins/logstash-input-bugzilla-*.gem
+cp -R logstash/vendor/bundle/jruby/1.9/gems/logstash-input-bugzilla*/lib/logstash/* logstash/lib/logstash/
